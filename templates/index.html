@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>LLM08 - PoCs</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FAF3E1",
+            beige: "#F5E7C6",
+            coral: "#FF4B44",
+            dark: "#222222",
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-cream min-h-screen flex items-center justify-center">
+
+  <div class="bg-beige p-10 rounded-2xl shadow-xl w-full max-w-lg">
+
+    <h1 class="text-3xl font-bold text-dark mb-8 text-center">
+      Menú principal
+    </h1>
+
+    <div class="space-y-4">
+
+      <a href="/poc1"
+         class="block text-center bg-coral text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+        PoC #1
+      </a>
+
+      <a href="#"
+         class="block text-center border-2 border-coral text-coral py-3 rounded-lg font-semibold hover:bg-coral hover:text-white transition">
+        PoC #1
+      </a>
+
+      <a href="#"
+         class="block text-center bg-dark text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+        PoC #1
+      </a>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

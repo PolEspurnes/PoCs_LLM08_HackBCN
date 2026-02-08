@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>POC 1</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FAF3E1",
+            beige: "#F5E7C6",
+            coral: "#FF4B44",
+            dark: "#222222",
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-cream min-h-screen flex items-center justify-center">
+
+  <div class="bg-beige p-10 rounded-2xl shadow-xl w-full max-w-xl">
+
+    <h1 class="text-3xl font-bold text-dark mb-6 text-center">
+      POC 1
+    </h1>
+
+    <form method="POST" class="space-y-4">
+
+      <div>
+        <label class="block text-dark mb-1">Nombre del bar</label>
+        <input name="nombre" required
+          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none">
+      </div>
+
+      <div>
+        <label class="block text-dark mb-1">Fecha</label>
+        <input type="date" name="fecha" required
+          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none">
+      </div>
+
+      <div>
+        <label class="block text-dark mb-1">Población</label>
+        <input name="poblacion" required
+          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none">
+      </div>
+
+      <div>
+        <label class="block text-dark mb-1">Observaciones</label>
+        <textarea name="observaciones" rows="4"
+          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none"></textarea>
+      </div>
+
+      <div class="flex gap-4 pt-4">
+
+        <button type="submit"
+          class="flex-1 bg-coral text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+          Enviar
+        </button>
+
+        <a href="/"
+           class="flex-1 text-center border-2 border-dark text-dark py-3 rounded-lg font-semibold hover:bg-dark hover:text-white transition">
+          Volver
+        </a>
+
+      </div>
+      <p class="text-center text-sm text-dark mt-6">
+      <a href="/poc1-browser" class="text-coral font-semibold hover:underline">
+  Consulta otras denuncias
+      </a>
+    </p>
+
+    </form>
+
+  </div>
+
+</body>
+</html>

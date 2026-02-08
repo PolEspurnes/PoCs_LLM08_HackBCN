@@ -45,6 +45,6 @@ def similarity_search(query):
 	metadata = denuncias_metadata[I[0][0]]
 	
 	retrieved = denuncia + json.dumps(metadata)
-	print(retrieved)
+	#print(retrieved)
 
 	return retrieved

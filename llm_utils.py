@@ -16,7 +16,7 @@ Debes responder en base al 'Relevant context' que te será proporcionado, que se
 def ask_llm(retrieved_text):
 	payload = {
 		"model": MODEL,   # Openrouter model
-		"max_tokens": 1000,
+		"max_tokens": 500,
 		"messages": [
 			{"role": "system", "content": PROMPT},
 			{"role": "user", "content": f"Relevant context:\n{retrieved_text}"}

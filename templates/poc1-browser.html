@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>POC 1 Browser</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FAF3E1",
+            beige: "#F5E7C6",
+            coral: "#FF4B44",
+            dark: "#222222",
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-cream min-h-screen flex items-center justify-center">
+
+  <div class="bg-beige p-8 rounded-2xl shadow-xl w-full max-w-2xl flex flex-col h-[600px]">
+
+    <h1 class="text-2xl font-bold text-dark mb-4 text-center">
+      POC 1 Browser
+    </h1>
+
+    <!-- Chat -->
+    <div class="flex-1 bg-cream rounded-lg p-4 overflow-y-auto mb-4 space-y-3">
+
+      {% if messages %}
+        {% for msg in messages %}
+
+          <!-- Usuario -->
+          <div class="text-right">
+            <div class="inline-block bg-coral text-white px-4 py-2 rounded-xl">
+              {{ msg.user }}
+            </div>
+          </div>
+
+          <!-- IA -->
+          <div class="text-left">
+            <div class="inline-block bg-dark text-white px-4 py-2 rounded-xl whitespace-pre-line">
+              {{ msg.ai }}
+            </div>
+          </div>
+
+        {% endfor %}
+      {% else %}
+        <p class="text-center text-dark opacity-50">
+          Haz una pregunta para comenzar.
+        </p>
+      {% endif %}
+
+    </div>
+
+    <!-- Input -->
+    <form method="POST" class="flex gap-3">
+
+      <input
+        name="question"
+        placeholder="Escribe tu pregunta..."
+        required
+        class="flex-1 px-4 py-3 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none"
+      >
+
+      <button
+        type="submit"
+        class="bg-coral text-white px-6 rounded-lg font-semibold hover:opacity-90 transition">
+        Enviar
+      </button>
+
+    </form>
+
+    <a href="/" class="text-center text-dark mt-4 hover:underline">
+      ← Volver al menú
+    </a>
+
+  </div>
+
+</body>
+</html>
