@@ -1,6 +1,5 @@
 from embeddings import *
-from llm_utils import ask_llm
-from llm_semanticUtils import ask_llmSemantic
+from llm_utils import ask_llm, ask_llmSemantic
 from utils import *
 from iaFilter import *
 from flask import Flask, render_template, request
@@ -47,8 +46,9 @@ def poc1_browser():
 
 	return render_template("poc1-browser.html", messages=messages)
 
-@app.route("/poc2-browser", methods=["GET", "POST"])
-def poc2_browser():
+
+@app.route("/poc2", methods=["GET", "POST"])
+def poc2():
     messages = []
 
     if request.method == "POST":
@@ -62,7 +62,7 @@ def poc2_browser():
                 "user": denormalize_output(query),
                 "ai": "No se permite hablar sobre el ilustrísimo Xavier."
             })
-            return render_template("poc2-browser.html", messages=messages)
+            return render_template("poc2.html", messages=messages)
 
         #if not football_domain_filter(query):
         #    return "Esta IA solo habla de fútbol."
@@ -77,9 +77,12 @@ def poc2_browser():
             "ai": ai_response
         })
 
-    return render_template("poc2-browser.html", messages=messages)
+    return render_template("poc2.html", messages=messages)
 
 
 
 if __name__ == "__main__":
+
+	# AQUI CARGAR LOS EMBEDDINGS DE LA POC2
+
 	app.run(debug=True)
