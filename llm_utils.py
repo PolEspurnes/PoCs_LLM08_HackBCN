@@ -33,3 +33,4 @@ def ask_llm(retrieved_text):
 	).json()
 
 	return r["choices"][0]["message"]["content"]
+    

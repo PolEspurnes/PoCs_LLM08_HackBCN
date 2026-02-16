@@ -22,9 +22,17 @@
   </script>
 </head>
 
-<body class="bg-cream min-h-screen flex items-center justify-center">
+<body class="bg-cream min-h-screen flex flex-col items-center justify-center">
 
   <div class="bg-beige p-10 rounded-2xl shadow-xl w-full max-w-lg">
+  
+      <div class="bg-coral rounded-xl p-4 mb-5 flex justify-center shadow-md">
+		  <img 
+			src="{{ url_for('static', filename='ElCampeonato.png') }}"
+			alt="ElCampeonato"
+			class="h-full object-contain"
+		  >
+	  </div>
 
     <h1 class="text-3xl font-bold text-dark mb-8 text-center">
       Menú principal
@@ -37,19 +45,33 @@
         PoC #1
       </a>
 
-      <a href="#"
+      <a href="/poc1-browser"
          class="block text-center border-2 border-coral text-coral py-3 rounded-lg font-semibold hover:bg-coral hover:text-white transition">
-        PoC #1
+        PoC #1 Browser
       </a>
 
-      <a href="#"
+      <a href="/poc2-browser"
          class="block text-center bg-dark text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
-        PoC #1
+        PoC #2 Browser
       </a>
 
     </div>
 
   </div>
+	<div class="border-t border-dark/10 mt-6 pt-4">
+		<p class="text-xs text-dark opacity-50 text-center mt-6 leading-relaxed">
+		Aviso legal: Esta página forma parte de una prueba de concepto (POC) en el contexto de actividades 
+		de pentesting con fines exclusivamente educativos y formativos. El contenido presentado es 
+		satírico y simulado. Cualquier semejanza con personas, entidades o situaciones reales es 
+		mera coincidencia. No se pretende ofender, perjudicar ni desacreditar a ninguna persona 
+		u organización-
+		
+		Este contenido se enmarca en el ejercicio de la libertad de expresión y de creación reconocidas 
+		en el artículo 20 de la Constitución Española y en el artículo 11 de la Carta de los Derechos 
+		Fundamentales de la Unión Europea, siempre dentro del respeto a los derechos fundamentales, 
+		al honor, a la intimidad y a la propia imagen.
+		</p>
+	</div>
 
 </body>
 </html>

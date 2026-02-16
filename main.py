@@ -1,6 +1,8 @@
 from embeddings import *
 from llm_utils import ask_llm
-from utils import nueva_denuncia
+from llm_semanticUtils import ask_llmSemantic
+from utils import *
+from iaFilter import *
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -44,6 +46,38 @@ def poc1_browser():
 		})
 
 	return render_template("poc1-browser.html", messages=messages)
+
+@app.route("/poc2-browser", methods=["GET", "POST"])
+def poc2_browser():
+    messages = []
+
+    if request.method == "POST":
+        query = request.form.get("question")
+
+        query = normalize_query(query)
+
+        if forbidden_filter(query):
+            #return "No se permite hablar sobre el ilustrísimo Xavier."
+            messages.append({
+                "user": denormalize_output(query),
+                "ai": "No se permite hablar sobre el ilustrísimo Xavier."
+            })
+            return render_template("poc2-browser.html", messages=messages)
+
+        #if not football_domain_filter(query):
+        #    return "Esta IA solo habla de fútbol."
+
+        ai_response = ask_llmSemantic(query)
+
+        # Restaurar nombres antes de mostrar
+        ai_response = denormalize_output(ai_response)
+
+        messages.append({
+            "user": query,
+            "ai": ai_response
+        })
+
+    return render_template("poc2-browser.html", messages=messages)
 
 
 
