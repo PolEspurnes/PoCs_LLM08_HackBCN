@@ -1,0 +1,26 @@
+[
+  {
+    "question": "¿Tengo que ser jugador para hacerme socio?",
+    "answer": "No. El programa está pensado para todo tipo de espectadores y aficionados."
+  },
+  {
+    "question": "¿Puedo hacerme socio aunque no vaya a todos los partidos?",
+    "answer": "Sí. La membresía no exige asistencia mínima. Puedes disfrutar de los beneficios aunque solo acudas ocasionalmente."
+  },
+  {
+    "question": "¿La cuota es mensual o anual?",
+    "answer": "La cuota es anual y se paga en un único cargo al completar el registro. El pago es de 500€."
+  },
+  {
+    "question": "¿Puedo transferir mi condición de socio a otra persona?",
+    "answer": "No. La membresía es personal e intransferible."
+  },
+  {
+    "question": "¿Qué pasa si pierdo mis credenciales?",
+    "answer": "Puedes recuperarlas desde el formulario de acceso o solicitando ayuda al soporte."
+  },
+  {
+    "question": "¿Ser socio garantiza entrada a todos los partidos?",
+    "answer": "No garantiza entrada automática, pero sí prioridad en la compra de entradas y acceso anticipado a determinadas ventas."
+  }
+]

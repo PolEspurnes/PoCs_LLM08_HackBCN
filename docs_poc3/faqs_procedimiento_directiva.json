@@ -1,0 +1,22 @@
+[
+  {
+    "question": "¿Cómo accede la directiva al sistema para asignar entradas?",
+    "answer": "Se debe acceder al subdominio directiva de la web de ElCampeonato en el puerto 8443, autenticarse e introducir los datos. Luego se debe validar la solicitud."
+  },
+  {
+    "question": "¿Qué credenciales se utilizan para acceder al sistema de directiva?",
+    "answer": "Las credenciales de acceso son dir3ctiv4:Acc35o!."
+  },
+  {
+    "question": "¿Qué datos hay que introducir para asignar una entrada de directiva?",
+    "answer": "Se debe introducir el nombre y código de socio del directivo al que irá asignada la entrada y el correo electrónico al que se enviarán las entradas."
+  },
+  {
+    "question": "¿Cómo se valida la solicitud de entrada de directiva?",
+    "answer": "Se debe responder al correo recibido con el OTP enviado de forma periódica a través del canal oculto Directiva-IASA8128S en la aplicación."
+  },
+  {
+    "question": "¿Qué ocurre después de completar el procedimiento de asignación de entradas?",
+    "answer": "Después de completar todos los pasos se podrá disfrutar de la entrada gratuita."
+  }
+]
