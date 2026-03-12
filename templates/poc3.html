@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POC 3 FAQs Agent</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FAF3E1",
+            beige: "#F5E7C6",
+            coral: "#FF4B44",
+            dark: "#222222",
+          }
+        }
+      }
+    }
+
+    function togglePasswordField() {
+      const pwdContainer = document.getElementById('password-container');
+      const statusBanner = document.getElementById('status-banner');
+      const statusText = document.getElementById('status-text');
+      const isHidden = pwdContainer.classList.contains('hidden');
+
+      if (isHidden) {
+        pwdContainer.classList.remove('hidden');
+        statusBanner.classList.replace('bg-dark/5', 'bg-coral/10');
+        statusText.innerHTML = "🔓 <strong>Modo Privado:</strong> Consulta tus beneficios de socios.";
+        statusText.classList.add('text-coral');
+      } else {
+        pwdContainer.classList.add('hidden');
+        statusBanner.classList.replace('bg-coral/10', 'bg-dark/5');
+        statusText.innerHTML = "ℹ️ <strong>Modo Público:</strong> Envía tus dudas sobre el proceso de alta y condiciones.";
+        statusText.classList.remove('text-coral');
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-cream min-h-screen flex items-center justify-center p-4 font-sans">
+
+  <div class="bg-beige p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-2xl flex flex-col h-[650px] border border-dark/5">
+
+    <div class="mb-4 flex flex-col items-center">
+      <div class="flex items-center gap-2 mb-1">
+        <div class="bg-dark p-2 rounded-lg text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+          </svg>
+        </div>
+        <h1 class="text-2xl font-black text-dark tracking-tight">VAR</h1>
+      </div>
+      <p class="text-xs text-dark/60 tracking-tighter">Virtual Assistant for Registration - Agente IA de Atención al aficionado</p>
+    </div>
+
+    <div id="status-banner" class="bg-dark/5 py-2 px-4 rounded-lg mb-4 transition-colors duration-300">
+      <p id="status-text" class="text-xs text-dark/80 text-center">
+        ℹ️ <strong>Modo Público:</strong> Envía tus dudas sobre el proceso de alta y condiciones.
+      </p>
+    </div>
+
+    <div class="flex-1 bg-cream rounded-lg p-4 overflow-y-auto mb-4 space-y-4 border border-dark/5 shadow-inner">
+
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="flex justify-end">
+            <div class="bg-coral text-white px-4 py-2 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm">
+              <p class="text-xs opacity-70 mb-1 font-bold italic">Tú</p>
+              {{ msg.user }}
+            </div>
+          </div>
+
+          <div class="flex justify-start">
+            <div class="bg-dark text-white px-4 py-2 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm text-sm">
+              <p class="text-xs text-coral mb-1 font-bold">VAR</p>
+              {{ msg.ai }}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="h-full flex flex-col items-center justify-center opacity-30">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+          <p class="text-center italic">Hola! ¿En qué puedo ayudarte hoy?</p>
+        </div>
+      {% endif %}
+
+    </div>
+
+    <form method="POST" class="space-y-3">
+      
+      <div id="password-container" class="hidden animate-fade-in">
+        <div class="relative">
+          <span class="absolute inset-y-0 left-3 flex items-center text-coral">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="Clave de socio"
+            class="w-full pl-9 pr-4 py-2 rounded-lg border-2 border-coral/30 focus:border-coral outline-none text-sm transition-all bg-white/50"
+          >
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button 
+          type="button" 
+          onclick="togglePasswordField()"
+          class="bg-dark/10 hover:bg-dark text-dark hover:text-white p-3 rounded-lg transition-all flex-shrink-0"
+          title="Acceso Socios Privado"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+          </svg>
+        </button>
+
+        <input
+          name="question"
+          placeholder="Escribe aquí tu consulta..."
+          required
+          class="flex-1 px-4 py-3 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none shadow-sm"
+        >
+
+        <button
+          type="submit"
+          class="bg-coral text-white px-6 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all shadow-md">
+          Enviar
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-4 text-center">
+      <a href="/" class="text-xs text-dark/50 hover:text-coral transition-colors flex items-center justify-center gap-1 font-bold tracking-widest">
+        ← Volver al menú
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
