@@ -1,6 +1,9 @@
 from sentence_transformers import SentenceTransformer
 from dotenv import dotenv_values
 import numpy as np
+import faiss
+
+index = faiss.read_index("faiss_index.bin")
 
 OPEN_ROUTER_KEY = dotenv_values(".env")["OPEN_ROUTER_KEY"]
 
@@ -46,14 +49,27 @@ def forbidden_filter(query, threshold=0.80):
     return best_score >= threshold  # True = bloquear
     
 def football_domain_filter(query, threshold=0.55):
+    # q_emb = use_model.encode([query]).astype("float32")
+
+    # q_norm = q_emb / np.linalg.norm(q_emb, axis=1, keepdims=True)
+    # f_norm = football_embeddings / np.linalg.norm(football_embeddings, axis=1, keepdims=True)
+
+    # similarities = np.dot(q_norm, f_norm.T)[0]
+    # best_score = similarities.max()
+
+    # print(f"[Dominio fútbol: {best_score:.3f}]")
+
+    # return best_score >= threshold
     q_emb = use_model.encode([query]).astype("float32")
 
-    q_norm = q_emb / np.linalg.norm(q_emb, axis=1, keepdims=True)
-    f_norm = football_embeddings / np.linalg.norm(football_embeddings, axis=1, keepdims=True)
+    # Normalizar (igual que FAISS si usaste cosine)
+    faiss.normalize_L2(q_emb)
 
-    similarities = np.dot(q_norm, f_norm.T)[0]
-    best_score = similarities.max()
+    # Buscar en el índice
+    distances, indices = index.search(q_emb, k)
 
-    print(f"[Dominio fútbol: {best_score:.3f}]")
+    best_score = distances[0][0]
+
+    print(f"[FAISS dominio fútbol score: {best_score:.3f}]")
 
     return best_score >= threshold

@@ -64,8 +64,13 @@ def poc2():
             })
             return render_template("poc2.html", messages=messages)
 
-        #if not football_domain_filter(query):
-        #    return "Esta IA solo habla de fútbol."
+        if not football_domain_filter(query):
+            #return: "Esta IA solo habla de fútbol"
+            messages.append({
+                "user": denormalize_output(query),
+                "ai": "Esta IA solo habla de fútbol."
+            })
+            return render_template("poc2.html", messages=messages)
 
         ai_response = ask_llmSemantic(query)
 
@@ -82,7 +87,9 @@ def poc2():
 
 
 if __name__ == "__main__":
-
-	# AQUI CARGAR LOS EMBEDDINGS DE LA POC2
+    
+    # AQUI CARGAR LOS EMBEDDINGS DE LA POC2
+    global index
+    index = faiss.read_index("faiss_index.bin")
 
 	app.run(debug=True)
