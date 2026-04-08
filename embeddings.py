@@ -2,14 +2,23 @@ from sentence_transformers import SentenceTransformer
 import faiss
 from pathlib import Path
 import json
+import numpy as np
 
 
 embed_model = SentenceTransformer("all-MiniLM-L6-v2")
-index = faiss.IndexFlatL2(embed_model.get_sentence_embedding_dimension())
+dimension = embed_model.get_sentence_embedding_dimension()
 
 
+# PoC 1
+index = faiss.IndexFlatL2(dimension)
 denuncias = []
 denuncias_metadata = []
+
+
+# PoC 3
+## Usaremos IP (inner product) -> buscar por similitud coseno (mejor en busquedas semanticas)
+index_poc3 = faiss.IndexFlatIP(dimension)
+faqs_data = []
 
 
 def load_embeddings():
@@ -32,6 +41,26 @@ def load_embeddings():
 
 	# Build FAISS index
 	index.add(embeddings_denuncias)
+
+
+def load_embeddings_poc3():
+	
+	questions = []
+
+	for p in Path('./docs_poc3/').glob('*.json'):
+		data = json.loads(p.read_text())
+		
+		for q in data:
+			faqs_data.append(q)
+			questions.append(q["question"])
+
+	
+
+	# Normalizamos los embeddings
+	embeddings = embed_model.encode(questions, normalize_embeddings=True)
+
+	# Build FAISS index
+	index_poc3.add(np.array(embeddings).astype("float32"))
 
 
 def similarity_search(query):

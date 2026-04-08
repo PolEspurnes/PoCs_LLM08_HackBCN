@@ -8,43 +8,43 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-	return render_template("index.html")
+    return render_template("index.html")
 
 
 @app.route("/poc1", methods=["GET", "POST"])
 def poc1():
 
-	if request.method == "POST":
-		data = {
-			"nombre_bar": request.form.get("nombre"),
-			"fecha_denuncia": request.form.get("fecha"),
-			"poblacion": request.form.get("poblacion"),
-			"observaciones": request.form.get("observaciones")
-		}
+    if request.method == "POST":
+        data = {
+            "nombre_bar": request.form.get("nombre"),
+            "fecha_denuncia": request.form.get("fecha"),
+            "poblacion": request.form.get("poblacion"),
+            "observaciones": request.form.get("observaciones")
+        }
 
-		nueva_denuncia(data)
+        nueva_denuncia(data)
 
-	return render_template("poc1.html")
+    return render_template("poc1.html")
 
 
 @app.route("/poc1-browser", methods=["GET", "POST"])
 def poc1_browser():
-	messages = []
+    messages = []
 
-	if request.method == "POST":
-		load_embeddings()
-		
-		query = request.form.get("question")
-		datos_denuncia = similarity_search(query)
-		ai_response = ask_llm(datos_denuncia)
+    if request.method == "POST":
+        load_embeddings()
+        
+        query = request.form.get("question")
+        datos_denuncia = similarity_search(query)
+        ai_response = ask_llm(datos_denuncia)
 
 
-		messages.append({
-			"user": query,
-			"ai": ai_response
-		})
+        messages.append({
+            "user": query,
+            "ai": ai_response
+        })
 
-	return render_template("poc1-browser.html", messages=messages)
+    return render_template("poc1-browser.html", messages=messages)
 
 
 @app.route("/poc2", methods=["GET", "POST"])
@@ -86,22 +86,33 @@ def poc2():
 
 
 @app.route("/poc3", methods=["GET", "POST"])
-def poc3():
+def poc3():    
+    if request.method == "POST":
+        messages = []
+        data = {
+            "password": request.form.get("password"),
+            "question": request.form.get("question")
+        }
+        
+        query = request.form.get("question")
+        password = request.form.get("password")
 
-	if request.method == "POST":
-		data = {
-			"password": request.form.get("password"),
-			"question": request.form.get("question")
-		}
+        #datos_denuncia = similarity_search(query)
+        
+        #ai_response = ask_llm(datos_denuncia)
 
-		#nueva_denuncia(data)
 
-	return render_template("poc3.html")
+        messages.append({
+            "user": query,
+            "ai": "placeholder" #ai_response
+        })
+
+        return render_template("poc3.html", messages=messages)
+
+
+    return render_template("poc3.html")
 
 
 if __name__ == "__main__":
-    
-    # AQUI CARGAR LOS EMBEDDINGS DE LA POC2
-    global index
-
+    load_embeddings_poc3()
     app.run(debug=True)
