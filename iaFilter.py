@@ -3,7 +3,11 @@ from dotenv import dotenv_values
 import numpy as np
 import faiss
 
-index = faiss.read_index("faiss_index.bin")
+try:
+    index = faiss.read_index("faiss_index.bin")
+except:
+    index = "Testing"
+    print("Fais index not found")
 
 OPEN_ROUTER_KEY = dotenv_values(".env")["OPEN_ROUTER_KEY"]
 

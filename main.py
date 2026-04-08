@@ -85,11 +85,23 @@ def poc2():
     return render_template("poc2.html", messages=messages)
 
 
+@app.route("/poc3", methods=["GET", "POST"])
+def poc3():
+
+	if request.method == "POST":
+		data = {
+			"password": request.form.get("password"),
+			"question": request.form.get("question")
+		}
+
+		#nueva_denuncia(data)
+
+	return render_template("poc3.html")
+
 
 if __name__ == "__main__":
     
     # AQUI CARGAR LOS EMBEDDINGS DE LA POC2
     global index
-    index = faiss.read_index("faiss_index.bin")
 
-	app.run(debug=True)
+    app.run(debug=True)

@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estadísticas - ELCAMPEONATO</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,92 +23,88 @@
   </script>
 </head>
 
-<body class="bg-cream min-h-screen flex flex-col items-center justify-center">
+<body class="bg-cream min-h-screen flex flex-col items-center justify-center p-4 font-sans">
 
-  <div class="bg-beige p-8 rounded-2xl shadow-xl w-full max-w-2xl flex flex-col h-[680px]">
+  <div class="bg-beige p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-2xl flex flex-col h-[720px] border border-dark/5">
 
-    <!-- Cabecera con logo -->
-    <div class="bg-coral rounded-xl p-4 mb-5 flex justify-center shadow-md">
+    <div class="bg-coral rounded-xl p-4 mb-5 flex justify-center shadow-lg transition-transform hover:scale-[1.01]">
       <img 
-        src="{{ url_for('static', filename='ElCampeonato.png') }}"
-        alt="ElCampeonato"
+        src="{{ url_for('static', filename='ElCampeonato.png') }}" 
+        alt="ElCampeonato" 
         class="h-36 object-contain"
       >
     </div>
-	
-	<h1 class="text-2xl font-bold text-dark mb-4 text-center">
-		Estadísticas de ELCAMPEONATO
-	</h1>
+  
+    <div class="mb-4 text-center">
+      <h1 class="text-2xl font-black text-dark tracking-tight uppercase">NOMBRE GRACIOSO</h1>
+      <p class="text-[10px] text-dark/60 font-bold tracking-[0.2em]">Estadísticas Avanzadas del Campeonato</p>
+    </div>
 
-    <!-- Input -->
-    <form method="POST" class="flex gap-3">
-
+    <form method="POST" class="flex gap-2 mb-4">
       <input
         name="question"
         placeholder="Ej: ¿Quién tiene más goles?"
         required
-        class="flex-1 px-4 py-3 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none"
+        class="flex-1 px-4 py-3 rounded-lg border border-dark/10 focus:ring-2 focus:ring-coral outline-none bg-white shadow-sm text-sm"
       >
-
       <button
         type="submit"
-        class="bg-coral text-white px-6 rounded-lg font-semibold hover:opacity-90 transition">
+        class="bg-dark text-white px-6 rounded-lg font-black uppercase tracking-widest text-xs hover:bg-coral transition-all shadow-md active:scale-95">
         Consultar
       </button>
-
     </form>
-	<hr>
-	<hr>
-	    <!-- Chat -->
-    <div class="flex-1 bg-cream rounded-lg p-4 overflow-y-auto mb-4 space-y-3">
+
+    <div class="bg-dark/5 py-2 px-4 rounded-lg mb-4 border-l-4 border-dark/30">
+      <p class="text-[11px] text-dark/80 italic">
+        📊 <strong>Info:</strong> Consulta datos de goles, tarjetas, asistencias y rendimiento de equipos.
+      </p>
+    </div>
+
+    <div class="flex-1 bg-cream rounded-xl p-4 overflow-y-auto mb-4 space-y-4 border border-dark/10 shadow-inner">
 
       {% if messages %}
         {% for msg in messages %}
-
-          <!-- Usuario -->
-          <div class="text-right">
-            <div class="inline-block bg-coral text-white px-4 py-2 rounded-xl">
-              {{ msg.user }}
+          <div class="flex justify-end">
+            <div class="bg-coral/10 border border-coral/20 text-dark px-4 py-2 rounded-2xl rounded-tr-none max-w-[85%]">
+              <p class="text-[10px] text-coral font-black uppercase mb-1">Tu Consulta</p>
+              <p class="text-sm font-medium">{{ msg.user }}</p>
             </div>
           </div>
 
-          <!-- IA -->
-          <div class="text-left">
-            <div class="inline-block bg-dark text-white px-4 py-2 rounded-xl whitespace-pre-line">
-              {{ msg.ai }}
+          <div class="flex justify-start">
+            <div class="bg-dark text-white px-4 py-2 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm whitespace-pre-line border border-dark/5">
+              <div class="flex items-center gap-1.5 mb-1">
+                <span class="text-coral text-[10px] font-black uppercase tracking-widest">Stats Bot</span>
+              </div>
+              <p class="text-sm leading-relaxed">{{ msg.ai }}</p>
             </div>
           </div>
-
         {% endfor %}
       {% else %}
-        <p class="text-center text-dark opacity-50">
-          Pregunta sobre estadísticas del campeonato para comenzar.
-        </p>
+        <div class="h-full flex flex-col items-center justify-center opacity-30">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          <p class="text-center italic text-sm">Pregunta por datos del campeonato</p>
+        </div>
       {% endif %}
 
     </div>
 
-    <a href="/" class="text-center text-dark mt-4 hover:underline">
-      ← Volver al menú
-    </a>
+    <div class="flex justify-center border-t border-dark/5 pt-4">
+      <a href="/" class="text-[10px] text-dark/40 hover:text-dark transition-colors flex items-center gap-1 font-bold tracking-widest">
+        ← Volver al panel principal
+      </a>
+    </div>
 
   </div>
   
-	<div class="border-t border-dark/10 mt-6 pt-4">
-
-		<p class="text-xs text-dark opacity-50 text-center mt-6 leading-relaxed">
-		Aviso legal: Esta página forma parte de una prueba de concepto (POC) en el contexto de actividades 
-		de pentesting con fines exclusivamente educativos y formativos. El contenido presentado es 
-		satírico y simulado. Cualquier semejanza con personas, entidades o situaciones reales es 
-		mera coincidencia. No se pretende ofender, perjudicar ni desacreditar a ninguna persona 
-		u organización-
-		
-		Este contenido se enmarca en el ejercicio de la libertad de expresión y de creación reconocidas 
-		en el artículo 20 de la Constitución Española y en el artículo 11 de la Carta de los Derechos 
-		Fundamentales de la Unión Europea, siempre dentro del respeto a los derechos fundamentales, 
-		al honor, a la intimidad y a la propia imagen.
-		</p>
-	</div>
+  <div class="max-w-2xl mt-8 px-4">
+    <p class="text-[9px] text-dark/30 text-center leading-relaxed italic">
+      <strong>Aviso legal:</strong> Esta página forma parte de una prueba de concepto (POC) formativa. Contenido satírico y simulado. <br>
+      Protegido por el ejercicio de libertad de expresión (Art. 20 CE).
+    </p>
+  </div>
 
 </body>
 </html>

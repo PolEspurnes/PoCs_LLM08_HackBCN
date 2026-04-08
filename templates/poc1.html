@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>POC 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envío de Denuncias</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -22,84 +23,83 @@
   </script>
 </head>
 
-<body class="bg-cream min-h-screen flex flex-col items-center justify-center">
+<body class="bg-cream min-h-screen flex flex-col items-center justify-center p-4 font-sans">
 
-  <div class="bg-beige p-10 rounded-2xl shadow-xl w-full max-w-xl">
+  <div class="bg-beige p-6 md:p-10 rounded-2xl shadow-xl w-full max-w-xl border border-dark/5">
 
-	    <!-- Cabecera con logo -->
-    <div class="bg-coral rounded-xl p-4 mb-5 flex justify-center shadow-md">
-      <img 
-        src="{{ url_for('static', filename='DenunciaCampeonato.png') }}"
-        alt="WeWantYou"
-        class="h-36 object-contain"
-      >
+    <div class="mb-6 flex flex-col items-center">
+      <div class="bg-coral rounded-2xl p-6 mb-4 flex justify-center shadow-lg w-full transition-transform hover:scale-[1.01]">
+        <img 
+          src="{{ url_for('static', filename='DenunciaCampeonato.png') }}" 
+          alt="WeWantYou" 
+          class="h-32 object-contain"
+        >
+      </div>
+      <h1 class="text-3xl font-black text-dark tracking-tight text-center">
+        ¡Necesitamos tus denuncias!
+      </h1>
+      <p class="text-[10px] text-dark/60 uppercase tracking-[0.2em] font-bold mt-2 italic">Plataforma de defensa del fútbol</p>
     </div>
-    <h1 class="text-3xl font-bold text-dark mb-6 text-center">
-      ¡Necesitamos tus denuncias!
-    </h1>
 
-    <form method="POST" class="space-y-4">
+    <form method="POST" class="space-y-4 flex flex-col">
 
       <div>
-        <label class="block text-dark mb-1">Nombre del bar</label>
+        <label class="block text-xs font-black text-dark/70 uppercase mb-1 ml-1 tracking-wider text-left">Nombre del bar</label>
         <input name="nombre" required
-          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none">
+          class="w-full px-4 py-3 rounded-lg border border-dark/10 focus:ring-2 focus:ring-coral outline-none bg-white/80 shadow-sm transition-all">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-black text-dark/70 uppercase mb-1 ml-1 tracking-wider text-left">Fecha</label>
+          <input type="date" name="fecha" required
+            class="w-full px-4 py-3 rounded-lg border border-dark/10 focus:ring-2 focus:ring-coral outline-none bg-white/80 shadow-sm transition-all text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-black text-dark/70 uppercase mb-1 ml-1 tracking-wider text-left">Población</label>
+          <input name="poblacion" required
+            class="w-full px-4 py-3 rounded-lg border border-dark/10 focus:ring-2 focus:ring-coral outline-none bg-white/80 shadow-sm transition-all">
+        </div>
       </div>
 
       <div>
-        <label class="block text-dark mb-1">Fecha</label>
-        <input type="date" name="fecha" required
-          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none">
+        <label class="block text-xs font-black text-dark/70 uppercase mb-1 ml-1 tracking-wider text-left">Observaciones</label>
+        <textarea name="observaciones" rows="3"
+          placeholder="Escribe aquí los detalles..."
+          class="w-full px-4 py-3 rounded-lg border border-dark/10 focus:ring-2 focus:ring-coral outline-none bg-white/80 shadow-sm transition-all resize-none"></textarea>
       </div>
 
-      <div>
-        <label class="block text-dark mb-1">Población</label>
-        <input name="poblacion" required
-          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none">
-      </div>
-
-      <div>
-        <label class="block text-dark mb-1">Observaciones</label>
-        <textarea name="observaciones" rows="4"
-          class="w-full px-4 py-2 rounded-lg border border-dark/20 focus:ring-2 focus:ring-coral outline-none"></textarea>
-      </div>
-
-      <div class="flex gap-4 pt-4">
-
+      <div class="pt-2 flex justify-center">
         <button type="submit"
-          class="flex-1 bg-coral text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
-          Enviar
+          class="bg-coral text-white px-10 py-3.5 rounded-xl font-black uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-coral/20 text-sm">
+          Enviar denncia
         </button>
-
-        <a href="/"
-           class="flex-1 text-center border-2 border-dark text-dark py-3 rounded-lg font-semibold hover:bg-dark hover:text-white transition">
-          Volver
-        </a>
-
       </div>
-      <p class="text-center text-sm text-dark mt-6">
-      <a href="/poc1-browser" class="text-coral font-semibold hover:underline">
-  Consulta otras denuncias
-      </a>
-    </p>
+
+      <div class="flex flex-col items-center gap-4 mt-6">
+        <a href="/poc1-browser" class="text-sm text-dark font-bold hover:text-coral transition-colors flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          Consulta otras denuncias
+        </a>
+        
+        <a href="/" class="text-[10px] text-dark/40 hover:text-dark transition-colors flex items-center gap-1 font-bold tracking-[0.2em]">
+          ← Volver al menú
+        </a>
+      </div>
 
     </form>
 
   </div>
-  <div class="border-t border-dark/10 mt-6 pt-4">
-		<p class="text-xs text-dark opacity-50 text-center mt-6 leading-relaxed">
-		Aviso legal: Esta página forma parte de una prueba de concepto (POC) en el contexto de actividades 
-		de pentesting con fines exclusivamente educativos y formativos. El contenido presentado es 
-		satírico y simulado. Cualquier semejanza con personas, entidades o situaciones reales es 
-		mera coincidencia. No se pretende ofender, perjudicar ni desacreditar a ninguna persona 
-		u organización-
-		
-		Este contenido se enmarca en el ejercicio de la libertad de expresión y de creación reconocidas 
-		en el artículo 20 de la Constitución Española y en el artículo 11 de la Carta de los Derechos 
-		Fundamentales de la Unión Europea, siempre dentro del respeto a los derechos fundamentales, 
-		al honor, a la intimidad y a la propia imagen.
-		</p>
-	</div>
+
+  <div class="max-w-2xl mt-8 px-4">
+    <p class="text-[9px] text-dark/30 text-center leading-relaxed italic">
+      <strong>Aviso legal:</strong> Esta página forma parte de una prueba de concepto (POC) formativa. Contenido satírico y simulado. <br>
+      Protegido por el ejercicio de libertad de expresión (Art. 20 CE).
+    </p>
+  </div>
 
 </body>
 </html>

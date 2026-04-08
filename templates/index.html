@@ -27,12 +27,12 @@
   <div class="bg-beige p-10 rounded-2xl shadow-xl w-full max-w-lg">
   
       <div class="bg-coral rounded-xl p-4 mb-5 flex justify-center shadow-md">
-		  <img 
-			src="{{ url_for('static', filename='ElCampeonato.png') }}"
-			alt="ElCampeonato"
-			class="h-full object-contain"
-		  >
-	  </div>
+      <img 
+      src="{{ url_for('static', filename='ElCampeonato.png') }}"
+      alt="ElCampeonato"
+      class="h-64 object-contain"
+      >
+    </div>
 
     <h1 class="text-3xl font-bold text-dark mb-8 text-center">
       Menú principal
@@ -42,36 +42,35 @@
 
       <a href="/poc1"
          class="block text-center bg-coral text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
-        PoC #1
+        PoC #1 - DenuncIA
       </a>
 
       <a href="/poc2"
          class="block text-center border-2 border-coral text-coral py-3 rounded-lg font-semibold hover:opacity-90 transition">
-        PoC #2
+        PoC #2 - NOMBRE GRACIOSO
       </a>
 
-      <a href="/#"
+      <a href="/poc3"
          class="block text-center bg-dark text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
-        PoC #3
+        PoC #3 - VAR
       </a>
 
     </div>
 
   </div>
-	<div class="border-t border-dark/10 mt-6 pt-4">
-		<p class="text-xs text-dark opacity-50 text-center mt-6 leading-relaxed">
-		Aviso legal: Esta página forma parte de una prueba de concepto (POC) en el contexto de actividades 
-		de pentesting con fines exclusivamente educativos y formativos. El contenido presentado es 
-		satírico y simulado. Cualquier semejanza con personas, entidades o situaciones reales es 
-		mera coincidencia. No se pretende ofender, perjudicar ni desacreditar a ninguna persona 
-		u organización-
-		
-		Este contenido se enmarca en el ejercicio de la libertad de expresión y de creación reconocidas 
-		en el artículo 20 de la Constitución Española y en el artículo 11 de la Carta de los Derechos 
-		Fundamentales de la Unión Europea, siempre dentro del respeto a los derechos fundamentales, 
-		al honor, a la intimidad y a la propia imagen.
-		</p>
-	</div>
+  <div class="max-w-2xl mt-8 px-4">
+      <div class="border-t border-dark/5 pt-6">
+        <p class="text-[9px] text-dark/30 text-center leading-relaxed italic">
+    <strong>Aviso legal:</strong> Esta página forma parte de una prueba de concepto (POC) en el contexto de actividades 
+    de pentesting con fines exclusivamente educativos y formativos. El contenido presentado es 
+    satírico y simulado. Cualquier semejanza con personas, entidades o situaciones reales es 
+    mera coincidencia. <br><br>
+    Este contenido se enmarca en el ejercicio de la libertad de expresión y de creación reconocidas 
+    en el artículo 20 de la Constitución Española y en el artículo 11 de la Carta de los Derechos 
+    Fundamentales de la Unión Europea.
+        </p>
+    </div>
+  </div>
 
 </body>
 </html>
