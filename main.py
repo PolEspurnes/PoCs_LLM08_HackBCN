@@ -1,5 +1,5 @@
 from embeddings import *
-from llm_utils import ask_llm, ask_llmSemantic
+from llm_utils import ask_llm, ask_llmSemantic, ask_llm_faqs
 from utils import *
 from iaFilter import *
 from flask import Flask, render_template, request
@@ -89,6 +89,7 @@ def poc2():
 def poc3():    
     if request.method == "POST":
         messages = []
+        mode = 1
         data = {
             "password": request.form.get("password"),
             "question": request.form.get("question")
@@ -97,14 +98,24 @@ def poc3():
         query = request.form.get("question")
         password = request.form.get("password")
 
-        #datos_denuncia = similarity_search(query)
-        
-        #ai_response = ask_llm(datos_denuncia)
+        related_data = similarity_search_poc3(query)
 
+        if not related_data:
+            context = "NO CONTEXT"
+        else:
+        	context = "\n".join(f"- {r}" for r in related_data)
+        
+
+        if password == "Pass-Socio-1u23sad812njdas": # random
+            mode = 2
+        elif password == "Pass-Directivo-2l291jdsmajhcsai": # random
+        	mode = 3
+
+        ai_response = ask_llm_faqs(mode, query,context)
 
         messages.append({
             "user": query,
-            "ai": "placeholder" #ai_response
+            "ai": ai_response
         })
 
         return render_template("poc3.html", messages=messages)

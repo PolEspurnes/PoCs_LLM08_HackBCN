@@ -77,3 +77,23 @@ def similarity_search(query):
 	#print(retrieved)
 
 	return retrieved
+
+
+def similarity_search_poc3(query, k=2, threshold=0.65):
+	if not faqs_data:
+		return []
+
+	# Embedding de la pregunta del usuario
+	q_emb = embed_model.encode([query], normalize_embeddings=True)
+
+	scores, indices = index_poc3.search(np.array(q_emb).astype("float32"), k)
+
+	results = []
+
+	for score, idx in zip(scores[0], indices[0]):
+		if score >= threshold:
+			results.append(faqs_data[idx]["answer"])
+			#print(score)
+			#print(faqs_data[idx]["answer"])
+
+	return results
