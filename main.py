@@ -78,7 +78,7 @@ def poc2():
         ai_response = denormalize_output(ai_response)
 
         messages.append({
-            "user": query,
+            "user": denormalize_output(query),
             "ai": ai_response
         })
 

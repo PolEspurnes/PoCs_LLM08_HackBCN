@@ -9,7 +9,6 @@ def generate_filename():
 	allowed = string.ascii_uppercase + string.digits
 	return ''.join(random.choice(allowed) for _ in range(5))+".json"
 
-
 def nueva_denuncia(data):
 	filename = generate_filename()
 	with open("./denuncias/"+filename, "w", encoding="utf-8") as f:
@@ -27,4 +26,5 @@ def denormalize_output(text: str) -> str:
     text = re.sub(r"\bJavier\b", "Xavier", text, flags=re.IGNORECASE)
     text = re.sub(r"\bTebas\b", "Lollevas", text, flags=re.IGNORECASE)
     text = re.sub(r"\bLaLiga\b", "ElCampeonato", text, flags=re.IGNORECASE)
+    text = re.sub(r"\bLa Liga\b", "El Campeonato", text, flags=re.IGNORECASE)
     return text
