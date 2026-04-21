@@ -16,7 +16,7 @@ El proyecto utiliza actualmente un modelo gratuito a través de **OpenRouter**.
 
 * **Modelo de ejemplo:** `openai/gpt-oss-20b:free`
 
-Este modelo es suficiente para los propósitos de estas PoCs, aunque es posible intercambiarlo por cualquier otro modelo compatible.
+Este modelo es suficiente para los propósitos de estas PoCs, aunque es posible intercambiarlo por cualquier otro modelo reciente y de características similares.
 
 
 ### Embedding Model
