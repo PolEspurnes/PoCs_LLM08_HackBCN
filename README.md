@@ -1,6 +1,7 @@
 # PoCs_LLM08_HackBCN
 PoCs creadas para la presentación **Más allá del Prompt Injection: LLM08 contra Sistemas de Embeddings** de la [HackBCN 2026](https://hackbcn.org/).
 
+La presentación en formato PDF y las demostraciones en vídeo se pueden consultar en la carpeta **/presentation**.
 
 ## Tech Stack
 ### LLM Model
