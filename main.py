@@ -71,10 +71,11 @@ def poc2():
                 "ai": "Esta IA solo habla de fútbol."
             })
             return render_template("poc2.html", messages=messages)
-
+            
+     
         ai_response = ask_llmSemantic(query)
 
-        # Restaurar nombres antes de mostrar
+            # Restaurar nombres antes de mostrar
         ai_response = denormalize_output(ai_response)
 
         messages.append({
